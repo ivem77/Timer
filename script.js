@@ -11,6 +11,7 @@ const progressRing = document.querySelector('.progress-ring__circle-fg');
 const FULL_DASH_ARRAY = 490.088; // 2 * π * 78
 const workTab = document.querySelector('[data-interval="work"]');
 const breakTab = document.querySelector('[data-interval="break"]');
+const tabs = document.querySelectorAll('.tab-item');
 
 function updateDisplay() {
     const minutes = Math.floor(timeLeft / 60);
@@ -37,6 +38,7 @@ function toggleTimer() {
             if (timeLeft === 0) {
                 clearInterval(timerId);
                 timerId = null;
+                toggleButton.classList.remove('counting');
                 
                 // Toggle between work and break periods
                 isBreakTime = !isBreakTime;
@@ -45,7 +47,6 @@ function toggleTimer() {
                 // Update UI to show current session type
                 const titleElement = document.querySelector('h1');
                 titleElement.textContent = isBreakTime ? 'Timer' : 'Timer';
-                titleElement.classList.toggle('break', isBreakTime);
                 
                 // Update tabs
                 workTab.classList.toggle('active', !isBreakTime);
@@ -58,11 +59,13 @@ function toggleTimer() {
             }
         }, 1000);
         toggleButton.innerHTML = '<i class="fas fa-pause"></i>';
+        toggleButton.classList.add('counting');
     } else {
         // Pause timer
         clearInterval(timerId);
         timerId = null;
         toggleButton.innerHTML = '<i class="fas fa-play"></i>';
+        toggleButton.classList.remove('counting');
     }
 }
 
@@ -72,16 +75,48 @@ function resetTimer() {
     isBreakTime = false;
     timeLeft = 25 * 60;
     document.querySelector('h1').textContent = 'Timer';
-    document.querySelector('h1').classList.remove('break');
     progressRing.style.strokeDashoffset = FULL_DASH_ARRAY; // Reset progress ring
     updateDisplay();
     toggleButton.innerHTML = '<i class="fas fa-play"></i>';
+    toggleButton.classList.remove('counting');
     workTab.classList.add('active');
     breakTab.classList.remove('active');
 }
 
+function handleTabClick(e) {
+    const clickedTab = e.target;
+    const isWorkTab = clickedTab.dataset.interval === 'work';
+    
+    // Only switch if clicking inactive tab
+    if ((isWorkTab && isBreakTime) || (!isWorkTab && !isBreakTime)) {
+        // Clear existing timer
+        clearInterval(timerId);
+        timerId = null;
+        
+        // Switch modes
+        isBreakTime = !isWorkTab;
+        timeLeft = isBreakTime ? breakTime : (25 * 60);
+        
+        // Update UI
+        workTab.classList.toggle('active', isWorkTab);
+        breakTab.classList.toggle('active', !isWorkTab);
+        
+        // Reset play button
+        toggleButton.innerHTML = '<i class="fas fa-play"></i>';
+        
+        // Update display
+        updateDisplay();
+    }
+    toggleButton.classList.remove('counting');
+}
+
 toggleButton.addEventListener('click', toggleTimer);
 resetButton.addEventListener('click', resetTimer);
+
+// Add event listeners to tabs
+tabs.forEach(tab => {
+    tab.addEventListener('click', handleTabClick);
+});
 
 // Initialize display
 updateDisplay(); 

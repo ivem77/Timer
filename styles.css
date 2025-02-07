@@ -20,7 +20,7 @@ body {
 .timer {
     font-size: 5rem;
     font-weight: 300;
-    margin: 2rem 0 2.5rem;  /* Increased bottom margin to 2rem */
+    margin: 2rem 0 2.5rem;
     color: #ffffff;
 }
 
@@ -50,11 +50,22 @@ body {
     background-color: #26EF9B;
     position: relative;
     z-index: 1;
-    color: #06050F;  /* Match background color */
+    color: #06050F;
+    transition: all 0.3s ease;
+}
+
+#toggle-timer.counting {
+    background-color: transparent;
+    color: #26EF9B;
+    border: 0px solid #26EF9B;
 }
 
 #toggle-timer:hover {
-    background-color: #1dd38a;  /* Slightly darker green for hover */
+    background-color: #1dd38a;
+}
+
+#toggle-timer.counting:hover {
+    background-color: rgba(38, 239, 155, 0.1);
 }
 
 .reset-container {
@@ -85,10 +96,6 @@ body {
     letter-spacing: 0.6em;
     text-align: center;  /* Explicitly set text alignment */
     padding-left: 0.6em;  /* Compensate for letter-spacing to maintain visual center */
-}
-
-.container h1.break {
-    color: #26EF9B;
 }
 
 .progress-ring {
@@ -140,4 +147,10 @@ body {
     background-color: transparent;  /* Remove background from active state */
     border-bottom: 2px solid #26EF9B;
     margin-bottom: -2px;  /* Offset the parent's border */
+}
+
+/* Disable time adjustment during countdown */
+.counting .time-adjust {
+    opacity: 0;
+    pointer-events: none;
 } 
