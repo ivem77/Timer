@@ -75,7 +75,7 @@ function resetTimer() {
     isBreakTime = false;
     timeLeft = 25 * 60;
     breakTime = 5 * 60; // Reset break time too
-    document.querySelector('h1').textContent = 'Timer';
+    document.querySelector('h1').textContent = '🍅Timer';
     progressRing.style.strokeDashoffset = FULL_DASH_ARRAY; // Reset progress ring
     updateDisplay();
     toggleButton.innerHTML = '<i class="fas fa-play"></i>';
