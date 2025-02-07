@@ -5,15 +5,15 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-color: #1a1a1a;  /* Dark background */
+    background-color: #06050F;  /* New dark base color */
 }
 
 .container {
     text-align: center;
-    background-color: #1a1a1a;  /* Same as body background */
+    background-color: #06050F;
     padding: 2.5rem 4rem;  /* Increased from 2rem for more space */
     border-radius: 24px;
-    border: 2px solid #2d2d2d;  /* Dark grey border */
+    border: 2px solid #1A1927;  /* Slightly lighter than base for border */
     color: #ffffff;
 }
 
@@ -47,13 +47,14 @@ body {
 }
 
 #toggle-timer {
-    background-color: #8e44ad;
+    background-color: #26EF9B;
     position: relative;
     z-index: 1;
+    color: #06050F;  /* Match background color */
 }
 
 #toggle-timer:hover {
-    background-color: #9b59b6;
+    background-color: #1dd38a;  /* Slightly darker green for hover */
 }
 
 .reset-container {
@@ -87,7 +88,7 @@ body {
 }
 
 .container h1.break {
-    color: #8e44ad; /* Same as toggle button color */
+    color: #26EF9B;
 }
 
 .progress-ring {
@@ -104,13 +105,13 @@ body {
 
 .progress-ring__circle-bg {
     fill: none;
-    stroke: rgba(142, 68, 173, 0.2);  /* Lighter version of button color */
+    stroke: rgba(38, 239, 155, 0.2);  /* Lighter version of accent color */
     stroke-width: 4px;
 }
 
 .progress-ring__circle-fg {
     fill: none;
-    stroke: #8e44ad;
+    stroke: #26EF9B;
     stroke-width: 4px;
     stroke-dasharray: 490.088; /* 2 * π * 78 */
     stroke-dashoffset: 490.088; /* Start empty */
@@ -121,7 +122,7 @@ body {
     background-color: transparent;  /* Removed background */
     display: flex;  /* Changed to flex to allow children to take full width */
     width: 100%;  /* Take full container width */
-    border-bottom: 2px solid #2d2d2d;  /* Added bottom border */
+    border-bottom: 2px solid #1A1927;
     margin-bottom: 1rem;
 }
 
@@ -135,8 +136,8 @@ body {
 }
 
 .tab-item.active {
-    color: #8e44ad;  /* Purple color for active tab */
+    color: #26EF9B;
     background-color: transparent;  /* Remove background from active state */
-    border-bottom: 2px solid #8e44ad;  /* Add purple border bottom for active tab */
+    border-bottom: 2px solid #26EF9B;
     margin-bottom: -2px;  /* Offset the parent's border */
 } 
