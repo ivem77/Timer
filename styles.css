@@ -11,7 +11,7 @@ body {
 .container {
     text-align: center;
     background-color: #1a1a1a;  /* Same as body background */
-    padding: 2rem;
+    padding: 2.5rem 4rem;  /* Increased from 2rem for more space */
     border-radius: 24px;
     border: 2px solid #2d2d2d;  /* Dark grey border */
     color: #ffffff;
@@ -20,7 +20,7 @@ body {
 .timer {
     font-size: 5rem;
     font-weight: 300;
-    margin: 2rem 0;
+    margin: 2rem 0 2.5rem;  /* Increased bottom margin to 2rem */
     color: #ffffff;
 }
 
@@ -76,7 +76,14 @@ body {
 }
 
 .container h1 {
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin: 1rem auto 2.5rem;  /* Added auto margins for left/right to ensure centering */
     transition: color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.6em;
+    text-align: center;  /* Explicitly set text alignment */
+    padding-left: 0.6em;  /* Compensate for letter-spacing to maintain visual center */
 }
 
 .container h1.break {
@@ -108,4 +115,28 @@ body {
     stroke-dasharray: 490.088; /* 2 * π * 78 */
     stroke-dashoffset: 490.088; /* Start empty */
     transition: stroke-dashoffset 0.1s ease;
+}
+
+.interval-tab {
+    background-color: transparent;  /* Removed background */
+    display: flex;  /* Changed to flex to allow children to take full width */
+    width: 100%;  /* Take full container width */
+    border-bottom: 2px solid #2d2d2d;  /* Added bottom border */
+    margin-bottom: 1rem;
+}
+
+.tab-item {
+    flex: 1;  /* Make each tab take equal width */
+    padding: 6px 16px;
+    font-size: 0.9rem;
+    color: #808080;
+    transition: all 0.3s ease;
+    text-align: center;  /* Center the text within each tab */
+}
+
+.tab-item.active {
+    color: #8e44ad;  /* Purple color for active tab */
+    background-color: transparent;  /* Remove background from active state */
+    border-bottom: 2px solid #8e44ad;  /* Add purple border bottom for active tab */
+    margin-bottom: -2px;  /* Offset the parent's border */
 } 

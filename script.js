@@ -9,6 +9,8 @@ const toggleButton = document.getElementById('toggle-timer');
 const resetButton = document.getElementById('reset');
 const progressRing = document.querySelector('.progress-ring__circle-fg');
 const FULL_DASH_ARRAY = 490.088; // 2 * π * 78
+const workTab = document.querySelector('[data-interval="work"]');
+const breakTab = document.querySelector('[data-interval="break"]');
 
 function updateDisplay() {
     const minutes = Math.floor(timeLeft / 60);
@@ -42,8 +44,12 @@ function toggleTimer() {
                 
                 // Update UI to show current session type
                 const titleElement = document.querySelector('h1');
-                titleElement.textContent = isBreakTime ? 'Break Time' : 'Pomodoro Timer';
+                titleElement.textContent = isBreakTime ? 'Timer' : 'Timer';
                 titleElement.classList.toggle('break', isBreakTime);
+                
+                // Update tabs
+                workTab.classList.toggle('active', !isBreakTime);
+                breakTab.classList.toggle('active', isBreakTime);
                 
                 // Show alert and update display
                 alert(isBreakTime ? 'Time for a break!' : 'Break finished! Time to work!');
@@ -65,11 +71,13 @@ function resetTimer() {
     timerId = null;
     isBreakTime = false;
     timeLeft = 25 * 60;
-    document.querySelector('h1').textContent = 'Pomodoro Timer';
+    document.querySelector('h1').textContent = 'Timer';
     document.querySelector('h1').classList.remove('break');
     progressRing.style.strokeDashoffset = FULL_DASH_ARRAY; // Reset progress ring
     updateDisplay();
     toggleButton.innerHTML = '<i class="fas fa-play"></i>';
+    workTab.classList.add('active');
+    breakTab.classList.remove('active');
 }
 
 toggleButton.addEventListener('click', toggleTimer);
