@@ -7,6 +7,8 @@ const minutesDisplay = document.getElementById('minutes');
 const secondsDisplay = document.getElementById('seconds');
 const toggleButton = document.getElementById('toggle-timer');
 const resetButton = document.getElementById('reset');
+const progressRing = document.querySelector('.progress-ring__circle-fg');
+const FULL_DASH_ARRAY = 490.088; // 2 * π * 78
 
 function updateDisplay() {
     const minutes = Math.floor(timeLeft / 60);
@@ -15,6 +17,12 @@ function updateDisplay() {
     minutesDisplay.textContent = minutes.toString().padStart(2, '0');
     secondsDisplay.textContent = seconds.toString().padStart(2, '0');
     document.title = `${minutes}:${seconds} - ${isBreakTime ? 'Break' : 'Work'} Time`;
+
+    // Update progress ring
+    const totalTime = isBreakTime ? breakTime : (25 * 60);
+    const progress = timeLeft / totalTime;
+    const offset = FULL_DASH_ARRAY * progress;
+    progressRing.style.strokeDashoffset = offset;
 }
 
 function toggleTimer() {
@@ -58,6 +66,8 @@ function resetTimer() {
     isBreakTime = false;
     timeLeft = 25 * 60;
     document.querySelector('h1').textContent = 'Pomodoro Timer';
+    document.querySelector('h1').classList.remove('break');
+    progressRing.style.strokeDashoffset = FULL_DASH_ARRAY; // Reset progress ring
     updateDisplay();
     toggleButton.innerHTML = '<i class="fas fa-play"></i>';
 }

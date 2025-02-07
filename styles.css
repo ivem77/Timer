@@ -18,16 +18,22 @@ body {
 }
 
 .timer {
-    font-size: 4rem;
-    font-weight: bold;
+    font-size: 5rem;
+    font-weight: 300;
     margin: 2rem 0;
-    color: #ffffff;  /* White for timer */
+    color: #ffffff;
+}
+
+.timer-colon {
+    font-size: 2.5rem;
+    vertical-align: middle;
+    margin: 0 0.2rem;
 }
 
 .controls button {
     font-size: 2rem;  /* Bigger icons */
-    margin: 0 0.4rem;
-    padding: 2.8rem;
+    margin: 0 0.8rem;
+    padding: 4rem;
     cursor: pointer;
     color: white;
     border: none;
@@ -42,6 +48,8 @@ body {
 
 #toggle-timer {
     background-color: #8e44ad;
+    position: relative;
+    z-index: 1;
 }
 
 #toggle-timer:hover {
@@ -49,7 +57,7 @@ body {
 }
 
 .reset-container {
-    margin-top: 1.5rem;
+    margin-top: 2.5rem;  /* Increased from 1.5rem */
 }
 
 #reset {
@@ -73,4 +81,31 @@ body {
 
 .container h1.break {
     color: #8e44ad; /* Same as toggle button color */
+}
+
+.progress-ring {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-ring__circle {
+    transform: rotate(-90deg);
+    position: absolute;
+}
+
+.progress-ring__circle-bg {
+    fill: none;
+    stroke: rgba(142, 68, 173, 0.2);  /* Lighter version of button color */
+    stroke-width: 4px;
+}
+
+.progress-ring__circle-fg {
+    fill: none;
+    stroke: #8e44ad;
+    stroke-width: 4px;
+    stroke-dasharray: 490.088; /* 2 * π * 78 */
+    stroke-dashoffset: 490.088; /* Start empty */
+    transition: stroke-dashoffset 0.1s ease;
 } 

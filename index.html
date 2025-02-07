@@ -12,10 +12,16 @@
     <div class="container">
         <h1>Pomodoro Timer</h1>
         <div class="timer">
-            <span id="minutes">25</span>:<span id="seconds">00</span>
+            <span id="minutes">25</span><span class="timer-colon">:</span><span id="seconds">00</span>
         </div>
         <div class="controls">
-            <button id="toggle-timer"><i class="fas fa-play"></i></button>
+            <div class="progress-ring">
+                <svg class="progress-ring__circle" width="172" height="172">
+                    <circle class="progress-ring__circle-bg" r="78" cx="86" cy="86" />
+                    <circle class="progress-ring__circle-fg" r="78" cx="86" cy="86" />
+                </svg>
+                <button id="toggle-timer"><i class="fas fa-play"></i></button>
+            </div>
         </div>
         <div class="reset-container">
             <button id="reset">Reset</button>
